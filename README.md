@@ -14,11 +14,11 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 ## Self-Supervised pretext task
 
-<img src="Fig2_RSP.png" width="600px"/>
+<img src="Fig2_RSP.png" width="400px"/>
 
 ## Consistency training
 
-<img src="Fig1_Main.png" width="600px"/>
+<img src="Fig1_Main.png" width="400px"/>
 
 ## Table of contents
 * [Table of contents](#table-of-contents)
@@ -45,16 +45,15 @@ The implementation has three main components:
 * the task-specific supervised fine-tuning (`SSL`);
 * the task-specific consistency training (`SSL_CR`);
 
-### 1. self-supervised pretext task: Resolution sequence prediction in WSIs
+### 1. self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
 
-From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16, respectively. This can be easily adopted to any other dataset of choice. 
-
-The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files.
+From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adopted to any other dataset of choice. The choice of resolution levels for RSP task can also be set in [dataset.py#L277](dataset.py#L277)) while pretraining on any other datasets. The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files. 
 
 ```python
 python pretrain_BreastPathQ.py    
 python pretrain_Camelyon16.py
 ```
+
 ### 2. Task specific supervised fine-tuning on downstream task
 
 ### Citation
