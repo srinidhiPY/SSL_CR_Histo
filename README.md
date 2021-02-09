@@ -41,13 +41,13 @@ Additional packages can be installed via environment.yml / req.txt file.
 ## Usage
 
 The implementation has three main components:
-* the task-agnostic self-supervised pretext task (`Resolution sequence prediction (RSP)`) 
-* the task-specific supervised fine-tuning (`SSL`)
-* the task-specific consistency training (`SSL_CR`)
+* the task-agnostic self-supervised pretext task (`Resolution sequence prediction'(RSP)) 
+* the task-specific supervised fine-tuning (`SSL')
+* the task-specific consistency training (`SSL_CR')
 
 ### 1. self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
 
-From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adopted to any other dataset of choice. The choice of resolution levels for RSP task can also be set in [dataset.py#L277](dataset.py#L277)) while pretraining on any other datasets. The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files. 
+From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adopted to any other dataset of choice. The choice of resolution levels for RSP task can also be set in [dataset.py#L277](dataset.py#L277) while pretraining on any other datasets. The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files. 
 
 ```python
 python pretrain_BreastPathQ.py    // pretraining on BreastPathQ   
