@@ -27,17 +27,16 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 ## Requirements 
 Core implementation:
-* python3.5+
-* pytorch 1.0+
+* python 3.7+
+* pytorch 1.7+
+* Openslide-python 1.1+
+* Albumentations 1.8+
+* Scikit-image 0.15+
+* Scikit-learn 0.22+
+* Matplotlib 3.2+
 * scipy (any version)
 
-To reproduce our experiments:
-* python3.9+
-* Pytorch 1.7+
-* Scipy
-* NumPy
-* Matplotlib
-* Scikit-image
+Additional packages can be installed via environment.yml / req.txt file.
 
 ## Usage
 
