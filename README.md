@@ -53,6 +53,7 @@ From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you ca
 python pretrain_BreastPathQ.py    // pretraining on BreastPathQ   
 python pretrain_Camelyon16.py    // pretraining on Camelyon16
 ```
+We also provided the pretrained models for BreastPathQ and Camelyon16, which can found in "Pretrained_models" folder.
 
 ### 2. Task specific supervised fine-tuning on downstream task
 
