@@ -448,14 +448,14 @@ class Vectorize_WSIs:
 
 ####################################################################################################################
 
-#### SSL/SSL_CR - Supervised_Train ########
+#### SSL/SSL_CR - BreastPathQ dataloaders ########
 
 class DatasetBreastPathQ_Supervised_train:
 
     def __init__(self, dataset_path, image_size, transform=None):
 
         """
-        BreastPathQ dataset class wrapper (train with augmentation)
+        BreastPathQ dataset: supervised fine-tuning on downstream task
         """
 
         self.image_size = image_size
@@ -517,23 +517,23 @@ class DatasetBreastPathQ_Supervised_train:
             Aug2_img1 = np.array(Aug2_img1)
 
             # Stack along specified dimension
-            img1 = np.stack((img1, Aug1_img1, Aug2_img1), axis=0)
+            img = np.stack((img1, Aug1_img1, Aug2_img1), axis=0)
 
             # Numpy to torch
-            img1 = torch.from_numpy(img1)
+            img = torch.from_numpy(img)
 
             # Randomize the augmentations
-            shuffle_idx = torch.randperm(len(img1))
-            img1 = img1[shuffle_idx, :, :, :]
+            shuffle_idx = torch.randperm(len(img))
+            img = img[shuffle_idx, :, :, :]
 
             label = np.array(label)
             label = torch.from_numpy(label)
-            label = label.repeat(img1.shape[0])
+            label = label.repeat(img.shape[0])
 
             # Change Tensor Dimension to N x C x H x W
-            img1 = img1.permute(0, 3, 1, 2)
+            img = img.permute(0, 3, 1, 2)
 
-        return img1, label
+        return img, label
 
 #########
 class DatasetBreastPathQ_eval:
@@ -541,7 +541,7 @@ class DatasetBreastPathQ_eval:
     def __init__(self, dataset_path, image_size, transform=None):
 
         """
-        BreastPathQ dataset class wrapper (test)
+        BreastPathQ dataset: test
         """
 
         self.image_size = image_size
@@ -600,11 +600,9 @@ class DatasetBreastPathQ_eval:
 
 ##################
 
-'BreastPathQ dataloaders (unlabel_train, val) for semi-supervised learning'
-
 class DatasetBreastPathQ_SSLtrain(Dataset):
 
-    """ BreastPathQ dataset class wrapper """
+    """ BreastPathQ consistency training / validation  """
 
     def __init__(self, dataset_path, transform=None):
 
@@ -663,6 +661,8 @@ class DatasetBreastPathQ_SSLtrain(Dataset):
 #######################
 
 class TransformFix(object):
+
+    """" Weak and strong augmentation for consistency training """
 
     def __init__(self, image_size, N):
         self.weak = transforms.Compose([transforms.RandomHorizontalFlip(), transforms.RandomCrop(size=image_size)])
