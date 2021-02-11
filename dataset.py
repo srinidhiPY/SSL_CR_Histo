@@ -679,18 +679,14 @@ class TransformFix(object):
 #######################
 
 
-############################################################################################
+#############################################################################
 'Camelyon16 dataset dataloaders (train, val and test)'
 
 class DatasetCamelyon16_Supervised_train(Dataset):
 
     def __init__(self, data_path, json_path, image_size, transform=None):
 
-            """
-            Camelyon16 dataset class wrapper (train with augmentation)
-                    data_path: string, path to pre-sampled images
-                    json_path: string, path to the annotations in json format
-            """
+            """ Camelyon16 dataset: supervised fine-tuning on downstream task """
 
             self.transform = transform
             self.data_path = data_path
@@ -718,7 +714,7 @@ class DatasetCamelyon16_Supervised_train(Dataset):
 
         for line in f:
             pid, x_center, y_center = line.strip('\n').split(',')[0:3]
-            # Split into fine-tune set  - (Normal set - 36 to 160; Tumor set - 26 to 110)  Note: rest is used as pre-training
+            # Split into fine-tune set 210 WSIs - (Normal set - 36 to 160; Tumor set - 26 to 110)  Note: rest is used as pre-training
             name_split = pid.split("_")
             if name_split[0] == 'Tumor' and int(name_split[1]) > 25:
                 x_center, y_center = int(x_center), int(y_center)
@@ -782,19 +778,14 @@ class DatasetCamelyon16_Supervised_train(Dataset):
             img = img1.permute(0, 3, 1, 2)
 
         return img, label
-###########
 
-'Camelyon16 dataloaders (unlabel_train, val) for semi-supervised learning'
+###########
 
 class DatasetCamelyon16_SSLtrain(Dataset):
 
     def __init__(self, data_path, json_path, transform=None):
 
-            """
-            Camelyon16 dataset class wrapper (train with augmentation)
-                    data_path: string, path to pre-sampled images
-                    json_path: string, path to the annotations in json format
-            """
+            """ Camelyon16 dataloaders for consistency training """
 
             self.transform = transform
             self.data_path = data_path
@@ -817,7 +808,7 @@ class DatasetCamelyon16_SSLtrain(Dataset):
 
         for line in f:
             pid, x_center, y_center = line.strip('\n').split(',')[0:3]
-            # Split into fine-tune set  - (Normal set - 36 to 160; Tumor set - 26 to 110)
+            # Split into fine-tune set 210 WSIs - (Normal set - 36 to 160; Tumor set - 26 to 110)
             name_split = pid.split("_")
             if name_split[0] == 'Tumor' and int(name_split[1]) > 25:
                 x_center, y_center = int(x_center), int(y_center)
@@ -882,9 +873,7 @@ class DatasetCamelyon16_eval(Dataset):
     def __init__(self, data_path, json_path):
 
             """
-            Camelyon16 dataset class wrapper (train with augmentation)
-                    data_path: string, path to pre-sampled images
-                    json_path: string, path to the annotations in json format
+            Camelyon16 dataset for validation
             """
 
             self.data_path = data_path
@@ -907,7 +896,7 @@ class DatasetCamelyon16_eval(Dataset):
 
         for line in f:
             pid, x_center, y_center = line.strip('\n').split(',')[0:3]
-            # Split into fine-tune set  - (Normal set - 36 to 160; Tumor set - 26 to 110)  Note: rest is used as pre-training
+            # Split into fine-tune set 210 WSIs - (Normal set - 36 to 160; Tumor set - 26 to 110)
             name_split = pid.split("_")
             if name_split[0] == 'Tumor' and int(name_split[1]) > 25:
                 x_center, y_center = int(x_center), int(y_center)
@@ -1006,7 +995,7 @@ class DatasetCamelyon16_test(Dataset):                           # Final Predict
 
         return img, x_mask, y_mask
 
-########################################################################################
+##########################################################################
 
 ###### Kather dataloaders #############
 

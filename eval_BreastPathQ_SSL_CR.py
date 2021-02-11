@@ -275,7 +275,7 @@ def parse_args():
     # Consistency training
     parser.add_argument('--model_path_finetune', type=str,
                         default='/home/csrinidhi/SSL_Eval/Save_Results/SSL/0.1/',
-                        help='path to load (SSL pre-trained + supervised fine-tuned model) - Teacher')
+                        help='path to load SSL fine-tuned model to intialize "Teacher and student network" for consistency training')
     parser.add_argument('--model_save_pth', type=str,
                         default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/Results/Cellularity/Results/', help='path to save consistency trained model')
     parser.add_argument('--save_loss', type=str,
@@ -388,7 +388,7 @@ def main():
 
         if args.mode == 'fine-tuning':
 
-            ###### Load fine-tuned SSL model ###############
+            ###### Intialize both teacher and student network with fine-tuned SSL model ###############
 
             # Load model
             state_dict = torch.load(args.model_path_finetune)

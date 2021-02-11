@@ -242,7 +242,7 @@ def parse_args():
 
     # Fine-tuning
     parser.add_argument('--model_path', type=str,
-                        default='/home/csrinidhi/SSL_Eval/Data/BreastPathQ/BreastPathQ_pretrained_model.pt',
+                        default='/home/srinidhi/Research/Data/BreastPathQ/BreastPathQ_pretrained_model.pt',
                         help='path to load self-supervised pretrained model')
     parser.add_argument('--model_save_pth', type=str,
                         default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/',

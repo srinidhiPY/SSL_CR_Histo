@@ -1,7 +1,6 @@
 """
-Finetuning down stream task - SSL-CR
+Task-Specific consistency training on downstream task (Camelyon16)
 """
-from __future__ import print_function
 import argparse
 import os
 import time
@@ -30,7 +29,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from torch.utils.data.sampler import SubsetRandomSampler
 
-
+##########
 def train(args, model_teacher, model_student, classifier_teacher, classifier_student, tumor_labeled_train_loader, normal_labeled_train_loader, tumor_unlabeled_train_loader, normal_unlabeled_train_loader, optimizer, epoch):
 
     model_teacher.eval()
@@ -116,12 +115,6 @@ def train(args, model_teacher, model_student, classifier_teacher, classifier_stu
 
         final_loss = Supervised_loss + args.lambda_u * Consistency_loss
 
-        # Normalized loss
-        # const = 1 / (1 + args.lambda_u)
-        # Lh = Supervised_loss
-        # Lp = args.lambda_u * (losses_x.avg / losses_u.avg) * Consistency_loss
-        # final_loss = const * (Lh + Lp)
-
         # compute gradient and do SGD step #############
         optimizer.zero_grad()
         final_loss.backward()
@@ -199,11 +192,6 @@ def validate(args, model_student, classifier_student, val_tumor_loader, val_norm
             # Get inputs and target
             input, target = input.float(), target.long()
 
-            # Input data visualization for sanity check
-            # input = input.to(torch.uint8)
-            # im = transforms.ToPILImage()(input[1, :]).convert("RGB")
-            # im.show()
-
             # Move the variables to Cuda
             input, target = input.cuda(), target.cuda()
 
@@ -239,21 +227,21 @@ def validate(args, model_student, classifier_student, val_tumor_loader, val_norm
 
 def parse_args():
 
-    parser = argparse.ArgumentParser('Argument for Fine-Tuning')
+    parser = argparse.ArgumentParser('Argument for Camelyon16 - Consistency training')
 
     parser.add_argument('--print_freq', type=int, default=10, help='print frequency')
-    parser.add_argument('--save_freq', type=int, default=5, help='save frequency')
+    parser.add_argument('--save_freq', type=int, default=10, help='save frequency')
     parser.add_argument('--gpu', default='0, 1', help='GPU id to use.')
-    parser.add_argument('--num_workers', type=int, default=6, help='num of workers to use.')
+    parser.add_argument('--num_workers', type=int, default=8, help='num of workers to use.')
     parser.add_argument('--seed', type=int, default=42, help='seed for initializing training.')
 
     # model definition
     parser.add_argument('--model', type=str, default='resnet18', help='choice of network architecture.')
-    parser.add_argument('--mode', type=str, default='fine-tuning', help='fine-tuning/evaluation')
+    parser.add_argument('--mode', type=str, default='fine-tuning', help='fine-tuning')
     parser.add_argument('--modules_teacher', type=int, default=64,
-                        help='which modules to freeze for the fine-tuned model. (full-finetune(0), fine-tune only FC layer (60). Full_network(64) - Resnet18')
+                        help='which modules to freeze for the fine-tuned teacher model. (full-finetune(0), fine-tune only FC layer (60). Full_network(64) - Resnet18')
     parser.add_argument('--modules_student', type=int, default=60,
-                        help='which modules to freeze for fine-tuning the pretrained fine-tuned model. (full-finetune(0), fine-tune only FC layer (60) - Resnet18')
+                        help='which modules to freeze for fine-tuning the student model. (full-finetune(0), fine-tune only FC layer (60) - Resnet18')
     parser.add_argument('--num_classes', type=int, default=2, help='# of classes.')
     parser.add_argument('--num_epoch', type=int, default=90, help='epochs to train for - 150.')
     parser.add_argument('--batch_size', type=int, default=8, help='batch_size - 8/16.')
@@ -265,30 +253,28 @@ def parse_args():
                         help='weight decay/weights regularizer for sgd. - 1e-4')
     parser.add_argument('--beta1', default=0.9, type=float, help='momentum for sgd, beta1 for adam.')
     parser.add_argument('--beta2', default=0.999, type=float, help=' beta2 for adam.')
-    parser.add_argument('--lambda_u', default=1, type=float, help='coefficient of unlabeled loss - 1 Camelyon16 / BreastPathQ')
+    parser.add_argument('--lambda_u', default=1, type=float, help='coefficient of unlabeled loss')
 
     parser.add_argument('--model_path_finetune', type=str,
-                        default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/best_fine_tuned_model_37.pt',
-                        help='path to load SSL pre-trained finetuned model - Teacher')
-    parser.add_argument('--model_path_pretrain', type=str, default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/best_fine_tuned_model_37.pt',
-                        help='path to load SSL pre-trained finetuned model - Student')
+                        default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/',
+                        help='path to load SSL fine-tuned model to intialize "Teacher and student network" for consistency training')
     parser.add_argument('--model_save_pth', type=str,
-                        default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL_CR/0.1/',
+                        default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/Camelyon16/Fine-tune/SSL_CR/0.1/',
                         help='path to save fine-tuned model')
-    parser.add_argument('--save_loss', type=str, default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL_CR/0.1/',
+    parser.add_argument('--save_loss', type=str, default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/Camelyon16/Fine-tune/SSL_CR/0.1/',
                         help='path to save loss and other performance metrics')
-    parser.add_argument('--resume', type=str, default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL_CR/0.1/fine_tuned_model_35.pt',
+    parser.add_argument('--resume', type=str, default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/Camelyon16/Fine-tune/SSL_CR/0.1/',
                         metavar='PATH', help='path to latest checkpoint - model.pth (default: none)')
 
     # Data paths
-    parser.add_argument('--train_tumor_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_TRAIN/')
-    parser.add_argument('--train_normal_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_TRAIN/')
-    parser.add_argument('--json_train_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/jsons/train/')
+    parser.add_argument('--train_tumor_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_TRAIN/')
+    parser.add_argument('--train_normal_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_TRAIN/')
+    parser.add_argument('--json_train_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/jsons/train/')
     parser.add_argument('--labeled_train', default=0.1, type=float, help='portion of the train data with labels - 1(full), 0.1/0.25/0.5')
 
-    parser.add_argument('--val_tumor_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_VALID/')
-    parser.add_argument('--val_normal_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_VALID/')
-    parser.add_argument('--json_val_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/jsons/valid/')
+    parser.add_argument('--val_tumor_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_VALID/')
+    parser.add_argument('--val_normal_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_VALID/')
+    parser.add_argument('--json_val_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/jsons/valid/')
 
     # Tiling parameters
     parser.add_argument('--image_size', default=256, type=int, help='patch size width 256')
@@ -411,7 +397,9 @@ def main():
 
         if args.mode == 'fine-tuning':
 
-            ###### Load teacher model ###############
+            ###### Intialize both teacher and student network with fine-tuned SSL model ###############
+
+            ## Load teacher model ############
 
             # original model saved file with DataParallel (Multi-GPU)
             state_dict = torch.load(args.model_path_finetune)
@@ -459,7 +447,7 @@ def main():
             ###### Load student model ############################
 
             # original model saved file with DataParallel (Multi-GPU)
-            state_dict = torch.load(args.model_path_pretrain)
+            state_dict = torch.load(args.model_path_finetune)
 
             # create new OrderedDict that does not contain `module.`
             new_state_dict = OrderedDict()
@@ -577,7 +565,7 @@ def main():
             'adjust learning rate --- Note that step should be called after validate()'
             scheduler.step()
 
-            # Iterative training: Use the student as a teacher
+            # Iterative training: Use the student as a teacher after every epoch
             model_teacher = copy.deepcopy(model_student)
             classifier_teacher = copy.deepcopy(classifier_student)
 
@@ -626,14 +614,6 @@ def main():
                 torch.save(state, '{}/best_fine_tuned_model_{}.pt'.format(args.model_save_pth, epoch))
                 best_val_acc = val_acc
 
-                # T-sne Visualization
-                final_feats = final_feats.to('cpu')
-                final_feats = final_feats.numpy()
-                final_targets = final_targets.to('cpu')
-                final_targets = final_targets.numpy()
-                np.save('{}/best_pre_trained_feats_{}'.format(args.model_save_pth, epoch), final_feats)
-                np.save('{}/best_pre_trained_targets_{}'.format(args.model_save_pth, epoch), final_targets)
-
                 # help release GPU memory
                 del state
                 torch.cuda.empty_cache()
@@ -646,8 +626,6 @@ if __name__ == "__main__":
 
     args = parse_args()
     print(vars(args))
-
-    # torch.backends.cudnn.deterministic = True
 
     # Force the pytorch to create context on the specific device
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)

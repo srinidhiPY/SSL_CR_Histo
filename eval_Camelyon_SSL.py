@@ -1,7 +1,6 @@
 """
-Finetuning down stream task - SSL_Multi_Resolution
+Finetuning task - Supervised fine-tuning on downstream task (Camelyon16)
 """
-from __future__ import print_function
 import argparse
 import os
 import time
@@ -28,7 +27,7 @@ from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 from torch.utils.data.sampler import SubsetRandomSampler
 
-
+##############
 def train(args, model, classifier, tumor_labeled_train_loader, normal_labeled_train_loader, optimizer, epoch):
 
     """
@@ -155,11 +154,6 @@ def validate(args, model, classifier, val_tumor_loader, val_normal_loader, epoch
             # Get inputs and target
             input, target = input.float(), target.long()
 
-            # Input data visualization for sanity check
-            # input = input.to(torch.uint8)
-            # im = transforms.ToPILImage()(input[1, :]).convert("RGB")
-            # im.show()
-
             # Move the variables to Cuda
             input, target = input.cuda(), target.cuda()
 
@@ -195,12 +189,12 @@ def validate(args, model, classifier, val_tumor_loader, val_normal_loader, epoch
 
 def parse_args():
 
-    parser = argparse.ArgumentParser('Argument for Fine-Tuning')
+    parser = argparse.ArgumentParser('Argument for Camelyon16: Supervised Fine-Tuning')
 
     parser.add_argument('--print_freq', type=int, default=10, help='print frequency')
     parser.add_argument('--save_freq', type=int, default=10, help='save frequency')
     parser.add_argument('--gpu', default='0, 1', help='GPU id to use.')
-    parser.add_argument('--num_workers', type=int, default=9, help='num of workers to use.')
+    parser.add_argument('--num_workers', type=int, default=8, help='num of workers to use.')
     parser.add_argument('--seed', type=int, default=42, help='seed for initializing training.')
 
     # model definition
@@ -216,26 +210,27 @@ def parse_args():
     parser.add_argument('--beta1', default=0.9, type=float, help='momentum for sgd, beta1 for adam.')
     parser.add_argument('--beta2', default=0.999, type=float, help=' beta2 for adam.')
 
+    # Fine-tuning
     parser.add_argument('--model_path', type=str,
-                        default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Pre_train/best_model_238.pt',
-                        help='path to load SSL pretrained model')
+                        default='/home/srinidhi/Research/Data/Camelyon16/Pre_train/Camelyon16_pretrained_model.pt',
+                        help='path to load self-supervised pretrained model')
     parser.add_argument('--model_save_pth', type=str,
-                        default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/',
+                        default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/',
                         help='path to save fine-tuned model')
-    parser.add_argument('--save_loss', type=str, default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/',
+    parser.add_argument('--save_loss', type=str, default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/',
                         help='path to save loss and other performance metrics')
-    parser.add_argument('--resume', type=str, default='/home/cspy87/projects/rrg-amartel/cspy87/Camelyon16/Fine-tune/SSL/0.1/',
+    parser.add_argument('--resume', type=str, default='/home/srinidhi/Research/Code/SSL_Resolution/Save_Results/',
                         metavar='PATH', help='path to latest checkpoint - model.pth (default: none)')
 
     # Data paths
-    parser.add_argument('--train_tumor_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_TRAIN/')
-    parser.add_argument('--train_normal_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_TRAIN/')
-    parser.add_argument('--json_train_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/jsons/train/')
+    parser.add_argument('--train_tumor_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_TRAIN/')
+    parser.add_argument('--train_normal_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_TRAIN/')
+    parser.add_argument('--json_train_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/jsons/train/')
     parser.add_argument('--labeled_train', default=0.1, type=float, help='portion of the train data with labels - 1(full), 0.1/0.25/0.5')
 
-    parser.add_argument('--val_tumor_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_VALID/')
-    parser.add_argument('--val_normal_image_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_VALID/')
-    parser.add_argument('--json_val_pth', default='/home/cspy87/scratch/Data/CAMELYON16/Fine_tune/jsons/valid/')
+    parser.add_argument('--val_tumor_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_TUMOR_VALID/')
+    parser.add_argument('--val_normal_image_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/PATCHES_NORMAL_VALID/')
+    parser.add_argument('--json_val_pth', default='/home/srinidhi/Research/Data/CAMELYON16/Fine_tune/jsons/valid/')
 
     # Tiling parameters
     parser.add_argument('--image_size', default=256, type=int, help='patch size width 256')
@@ -423,7 +418,7 @@ def main():
             'adjust learning rate --- Note that step should be called after validate()'
             scheduler.step()
 
-            # Save model every 5 epochs
+            # Save model every 10 epochs
             if epoch % args.save_freq == 0:
                 print('==> Saving...')
                 state = {
@@ -461,14 +456,6 @@ def main():
                 torch.save(state, '{}/best_fine_tuned_model_{}.pt'.format(args.model_save_pth, epoch))
                 best_val_acc = val_acc
 
-                # T-sne Visualization
-                final_feats = final_feats.to('cpu')
-                final_feats = final_feats.numpy()
-                final_targets = final_targets.to('cpu')
-                final_targets = final_targets.numpy()
-                np.save('{}/best_pre_trained_feats_{}'.format(args.model_save_pth, epoch), final_feats)
-                np.save('{}/best_pre_trained_targets_{}'.format(args.model_save_pth, epoch), final_targets)
-
                 # help release GPU memory
                 del state
 
@@ -482,8 +469,6 @@ if __name__ == "__main__":
 
     args = parse_args()
     print(vars(args))
-
-    # torch.backends.cudnn.deterministic = True
 
     # Force the pytorch to create context on the specific device
     os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
