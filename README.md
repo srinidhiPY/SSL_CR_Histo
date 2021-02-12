@@ -78,6 +78,16 @@ python eval_Camelyon_SSL_CR.py    // Supervised fine-tuning on Camelyon16
 ```
 
 ## Testing
+The test performance is validated at two stages:
+
+1. Self-Supervised pretraining followed by supervised fine-tuning
+* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+
+2. Consistency training
+* From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+
+
+## Acknowledgements
 
 
 
