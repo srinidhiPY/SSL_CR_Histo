@@ -1,7 +1,7 @@
 #  Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis
 #### by [Chetan L. Srinidhi](https://srinidhipy.github.io), [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Fu-Der Chen](https://www.photon.utoronto.ca/people) and [Anne L. Martel](https://medbio.utoronto.ca/faculty/martel)
 
-* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [arXiv preprint](https://arxiv.org/pdf/2102.03897.pdf)
+* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
 ## Overview
 We propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
@@ -10,25 +10,15 @@ We propose a self-supervised driven consistency paradigm for histopathology imag
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast)*.  
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colorectal), and tumor cellularity quantification (Breast)*.  
 
 ## 1. Self-Supervised pretext task
-
 <img src="Fig2_RSP.png" width="800px"/>
 
 ## 2. Consistency training
-
 <img src="Fig1_Main.png" width="800px"/>
 
-## Table of contents
-* [Table of contents](#table-of-contents)
-* [Requirements](#requirements)
-* [Datasets](#datasets)
-* [Usage](#usage)
-
-
-
-## Requirements 
+## Prerequisites
 Core implementation:
 * Python 3.7+
 * Pytorch 1.7+
@@ -39,18 +29,21 @@ Core implementation:
 * Matplotlib 3.2+
 * Scipy, Numpy (any version)
 
-Additional packages can be installed via environment.yml / req.txt file.
+Additional packages can be installed via:
+```
+pip install -r requirements.txt
+```
 
 ## Datasets
 * BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
 * Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
 * Colorectal cancer tissue classification: to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
-## Usage
-The implementation has three main components:
-* Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
-* Task-specific supervised fine-tuning (`SSL`)
-* Task-specific teacher-student consistency training (`SSL_CR`)
+## Training 
+The model training happens at three stages:
+1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
+2. Task-specific supervised fine-tuning (`SSL`)
+3. Task-specific teacher-student consistency training (`SSL_CR`)
 
 ### 1. Self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
 From the file **"pretrain_BreastPathQ.py / pretrain_Camelyon16.py"**, you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adapted to any other dataset of choice. 
@@ -83,6 +76,9 @@ From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py"**, you ca
 python eval_BreastPathQ_SSL_CR.py  // Supervised fine-tuning on BreastPathQ   
 python eval_Camelyon_SSL_CR.py    // Supervised fine-tuning on Camelyon16
 ```
+
+## Testing
+
 
 
 ### Citation
