@@ -6,13 +6,14 @@
 arXiv preprint: https://arxiv.org/pdf/2102.03897.pdf
 
 ## Overview
-In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies: 
+Justified
+{In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies:} 
 
 1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression based tasks, i.e., tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast). 
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression based tasks, i.e., *tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast)*. 
 
 ## 1. Self-Supervised pretext task
 
@@ -37,16 +38,17 @@ Core implementation:
 * Scikit-learn 0.22+
 * Matplotlib 3.2+
 * Scipy, Numpy (any version)
+
 Additional packages can be installed via environment.yml / req.txt file.
 
 ## Usage
 
 The implementation has three main components:
-* the task-agnostic self-supervised pretext task (`Resolution sequence prediction (RSP)`) 
-* the task-specific supervised fine-tuning (`SSL`)
-* the task-specific consistency training (`SSL_CR`)
+* Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
+* Task-specific supervised fine-tuning (`SSL`)
+* Task-specific teacher-student consistency training (`SSL_CR`)
 
-### 1. self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
+### 1. Self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
 
 From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adopted to any other dataset of choice. The choice of resolution levels for RSP task can also be set in [dataset.py#L277](dataset.py#L277), while pretraining on any other datasets. The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files. 
 
