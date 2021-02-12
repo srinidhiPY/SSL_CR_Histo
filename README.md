@@ -6,19 +6,19 @@
 arXiv preprint: https://arxiv.org/pdf/2102.03897.pdf
 
 ## Overview
-In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverages both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies: 
+In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies: 
 
-1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images to learn a powerful supervisory signal for unsupervised representation learning.
+1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression based tasks, i.e., *tumor metastasis detection, tissue type classification, and tumor cellularity quantification**. 
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression based tasks, i.e., tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast). 
 
-## Self-Supervised pretext task
+## 1. Self-Supervised pretext task
 
 <img src="Fig2_RSP.png" width="600px"/>
 
-## Consistency training
+## 2. Consistency training
 
 <img src="Fig1_Main.png" width="600px"/>
 
