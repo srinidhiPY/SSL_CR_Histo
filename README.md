@@ -61,20 +61,30 @@ From the file **"pretrain_BreastPathQ.py / pretrain_Camelyon16.py"**, you can pr
 * The argument --train_image_pth is the only required argument and should be set to the directory containing your training WSIs. There are many more arguments that can be set, and these are all explained in the corresponding files. 
 
 ```python
-python pretrain_BreastPathQ.py    // pretraining on BreastPathQ   
-python pretrain_Camelyon16.py    // pretraining on Camelyon16
+python pretrain_BreastPathQ.py    // Pretraining on BreastPathQ   
+python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 ```
 * We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
 
 ### 2. Task specific supervised fine-tuning on downstream task
+From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%).
+
+* Arguments: --model_path - path to load self-supervised pretrained model; --train_tumor_image_pth - path to tumor image patches (train); --train_normal_image_pth - path to normal image patches (train); --val_tumor_image_pth - path to tumor image patches (validation); --val_normal_image_pth - path to normal image patches (validation); There are other arguments that can be set in the corresponding files. 
+
+```python
+python eval_BreastPathQ_SSL.py    // Supervised fine-tuning on BreastPathQ   
+python eval_Camelyon_SSL.py    // Supervised fine-tuning on Camelyon16
+```
+
+
 
 ### Citation
 
 If you use significant portions of our code or ideas from our paper in your research, please cite our work:
 ```
 @article{srinidhi2021self,
-  title={Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis},
-  author={Srinidhi, Chetan and Kim, Seung Wook and Chen, Fu-Der and Martel, Anne},
+  title={Self-supervised driven consistency training for annotation efficient histopathology image analysis},
+  author={Srinidhi, Chetan L and Kim, Seung Wook and Chen, Fu-Der and Martel, Anne L},
   journal={arXiv preprint arXiv:2102.03897},
   year={2021}
 }
