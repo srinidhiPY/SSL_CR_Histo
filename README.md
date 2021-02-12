@@ -6,14 +6,13 @@
 arXiv preprint: https://arxiv.org/pdf/2102.03897.pdf
 
 ## Overview
-Justified
-{In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies:} 
+In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies:
 
 1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression based tasks, i.e., *tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast)*. 
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colon), and tumor cellularity quantification (Breast)*.  
 
 ## 1. Self-Supervised pretext task
 
@@ -26,7 +25,10 @@ We carry out extensive validation experiments on three histopathology benchmark 
 ## Table of contents
 * [Table of contents](#table-of-contents)
 * [Requirements](#requirements)
+* [Datasets](#datasets)
 * [Usage](#usage)
+
+
 
 ## Requirements 
 Core implementation:
@@ -41,8 +43,12 @@ Core implementation:
 
 Additional packages can be installed via environment.yml / req.txt file.
 
-## Usage
+## Datasets
+* BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
+* Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
+* Colorectal cancer tissue classification: https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
+## Usage
 The implementation has three main components:
 * Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
 * Task-specific supervised fine-tuning (`SSL`)
