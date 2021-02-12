@@ -1,4 +1,4 @@
-# SSL_CR_Histo
+#  Self-Supervised driven Consistency Training for Digital Histopathology
 #### by [Chetan Srinidhi](https://srinidhipy.github.io), [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Fu-Der Chen](https://www.photon.utoronto.ca/people) and [Anne Martel](https://medbio.utoronto.ca/faculty/martel)
 
 * Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf).
