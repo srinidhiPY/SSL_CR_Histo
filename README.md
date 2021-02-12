@@ -46,7 +46,7 @@ Additional packages can be installed via environment.yml / req.txt file.
 ## Datasets
 * BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
 * Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
-* Colorectal cancer tissue classification: https://zenodo.org/record/1214456#.YCbVXy3b1hE
+* Colorectal cancer tissue classification: to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Usage
 The implementation has three main components:
@@ -55,14 +55,16 @@ The implementation has three main components:
 * Task-specific teacher-student consistency training (`SSL_CR`)
 
 ### 1. Self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
+From the file **"pretrain_BreastPathQ.py / pretrain_Camelyon16.py"**, you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adapted to any other dataset of choice. 
 
-From the main file (**pretrain_BreastPathQ.py / pretrain_Camelyon16.py**) you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adopted to any other dataset of choice. The choice of resolution levels for RSP task can also be set in [dataset.py#L277](dataset.py#L277), while pretraining on any other datasets. The argument --train_image_pth is the only required argument and should be set to the directory containing your imgs. There are many more arguments that can be set and these are all explained in the corresponding files. 
+* The choice of resolution levels for the RSP task can also be set in [dataset.py#L277](dataset.py#L277) while pretraining on any other datasets. 
+* The argument --train_image_pth is the only required argument and should be set to the directory containing your training WSIs. There are many more arguments that can be set, and these are all explained in the corresponding files. 
 
 ```python
 python pretrain_BreastPathQ.py    // pretraining on BreastPathQ   
 python pretrain_Camelyon16.py    // pretraining on Camelyon16
 ```
-We also provided the pretrained models for BreastPathQ and Camelyon16, which can found in "Pretrained_models" folder.
+* We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
 
 ### 2. Task specific supervised fine-tuning on downstream task
 
