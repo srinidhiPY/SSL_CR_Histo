@@ -1,12 +1,10 @@
 #  Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis
 #### by [Chetan L. Srinidhi](https://srinidhipy.github.io), [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Fu-Der Chen](https://www.photon.utoronto.ca/people) and [Anne L. Martel](https://medbio.utoronto.ca/faculty/martel)
 
-* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). 
-
-arXiv preprint: https://arxiv.org/pdf/2102.03897.pdf
+* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [arXiv preprint](https://arxiv.org/pdf/2102.03897.pdf)
 
 ## Overview
-In this work, we propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two novel strategies:
+We propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
 
 1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
