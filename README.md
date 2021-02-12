@@ -14,11 +14,11 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 ## 1. Self-Supervised pretext task
 
-<img src="Fig2_RSP.png" width="1024px"/>
+<img src="Fig2_RSP.png" width="800px"/>
 
 ## 2. Consistency training
 
-<img src="Fig1_Main.png" width="600px"/>
+<img src="Fig1_Main.png" width="800px"/>
 
 ## Table of contents
 * [Table of contents](#table-of-contents)
