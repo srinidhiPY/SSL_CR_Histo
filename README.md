@@ -112,7 +112,7 @@ If you use significant portions of our code or ideas from our paper in your rese
   year={2021}
 }
 ```
-### Acknowldegements
+### Acknowledgements 
 We would like to acknowledge the use of Compute Canada facilities for our computing resources. This work was funded by the Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
 
 ### Questions or Comments
