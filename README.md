@@ -69,7 +69,7 @@ python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 ### 2. Task specific supervised fine-tuning on downstream task
 From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1). There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from **Step 1**). There are other arguments that can be set in the corresponding files. 
 
 ```python
 python eval_BreastPathQ_SSL.py  // Supervised fine-tuning on BreastPathQ   
@@ -82,7 +82,7 @@ Note: we didn't perform self-supervised pretraining on the Kather dataset (color
 ### 3. Task specific teacher-student consistency training on downstream task
 From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can fine-tune the student network by keeping the teacher network frozen via task-specific consistency training on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path_finetune** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model from Step 2) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path_finetune** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model from **Step 2**) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
 
 ```python
 python eval_BreastPathQ_SSL_CR.py  // Consistency training on BreastPathQ   
@@ -94,10 +94,12 @@ python eval_Kather_SSL_CR.py    // Consistency training on Kather dataset (Color
 The test performance is validated at two stages:
 
 1. Self-Supervised pretraining followed by supervised fine-tuning
-* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py "**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py "**, you can test the model by changing the flag in argument: '**--mode**' to '**evaluation**'.
 
 2. Consistency training
-* From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+* From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '**--mode**' to '**evaluation**'.
+
+The prediction on Camelyon16 test set can be performed using "**test_Camelyon16.py**" file. 
 
 ### Citation
 
@@ -111,7 +113,7 @@ If you use significant portions of our code or ideas from our paper in your rese
 }
 ```
 ### Acknowldegements
-We would like to acknowledge the use of Compute Canada Servers for our computing resources. This work was funded by Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
+We would like to acknowledge the use of Compute Canada facilities for our computing resources. This work was funded by the Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
 
 ### Questions or Comments
 Please direct any questions or comments to me; I am happy to help in any way I can. You can email me directly at chetan.srinidhi@utoronto.ca.
