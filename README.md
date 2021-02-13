@@ -20,24 +20,6 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 ## Results 
 
-#### Quantitative results using 10% labels
-
-| Methods   |  BreastPathQ  | 
-|           | (206 labels)  |  
-|-----------|---------------|
-|           | ICC(A)| ICC(B)|
-|-----------|-------|-------|	      
-| Random    | 0.697 | 0.637 |   
-| VAE       | 0.733 | 0.693 |  	
-| MoCo      | 0.675 | 0.648 |   	
-| RSP       | 0.701 | 0.667 |   	
-| Random+CR | 0.658 | 0.630 |   	
-| VAE+CR    | 0.771 | 0.727 |   	
-| MoCo+CR   | 0.808 | 0.803 |   	
-| RSP+CR    | 0.876 | 0.846 |   
-
-#### Visual results using 10% labels
-
 * Predicted tumor cellularity (TC) scores on **BreastPathQ** test set for 10% labeled data
 <img src="BPQ.png" width="800px"/>
 <br/>
