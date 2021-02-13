@@ -13,10 +13,10 @@ We propose a self-supervised driven consistency paradigm for histopathology imag
 We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colorectal), and tumor cellularity quantification (Breast)*.  
 
 ## 1. Self-Supervised pretext task
-<img src="Fig2_RSP.png" width="700px"/>
+<img src="Fig2_RSP.png" width="800px"/>
 
 ## 2. Consistency training
-<img src="Fig1_Main.png" width="700px"/>
+<img src="Fig1_Main.png" width="800px"/>
 
 ## Results 
 
