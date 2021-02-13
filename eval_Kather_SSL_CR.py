@@ -659,10 +659,10 @@ def main():
 
             # Print stats
             print('Confusion Matrix', confusion_mat)
-            print('Sensitivity =', se)
-            print('Specificity =', sp)
-            print('Accuracy =', acc)
-            print('F1_score =', f1)
+            print('Sensitivity class-wise =', se)
+            print('Specificity class-wise =', sp)
+            print('Accuracy class-wise =', acc)
+            print('F1_score weighted =', f1)
             print('AUC_score =', auc_score)
 
         else:
