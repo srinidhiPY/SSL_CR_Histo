@@ -67,30 +67,34 @@ python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 * We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
 
 ### 2. Task specific supervised fine-tuning on downstream task
-From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
+From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
 * Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1); There are other arguments that can be set in the corresponding files. 
 
 ```python
 python eval_BreastPathQ_SSL.py  // Supervised fine-tuning on BreastPathQ   
 python eval_Camelyon_SSL.py    // Supervised fine-tuning on Camelyon16
+python eval_Kather_SSL.py    // Supervised fine-tuning on Kather dataset (Colorectal)
 ```
+Note: we didn't perform self-supervised pretraining on the Kather dataset (colorectal) due to the unavailability of WSI's. Instead, we performed domain adaptation by pretraining on Camelyon16 and fine-tuning on the Kather dataset. Refer to, paper for more details.
+
 
 ### 3. Task specific teacher-student consistency training on downstream task
-From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py"**, you can fine-tune the student network by keeping the teacher network frozen via task-specific consistency training on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
+From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can fine-tune the student network by keeping the teacher network frozen via task-specific consistency training on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model, which is the fine-tuned model from Step 2) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path_finetune** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model from Step 2) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
 
 ```python
-python eval_BreastPathQ_SSL_CR.py  // Supervised fine-tuning on BreastPathQ   
-python eval_Camelyon_SSL_CR.py    // Supervised fine-tuning on Camelyon16
+python eval_BreastPathQ_SSL_CR.py  // Consistency training on BreastPathQ   
+python eval_Camelyon_SSL_CR.py    // Consistency training on Camelyon16
+python eval_Kather_SSL_CR.py    // Consistency training on Kather dataset (Colorectal)
 ```
 
 ## Testing
 The test performance is validated at two stages:
 
 1. Self-Supervised pretraining followed by supervised fine-tuning
-* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py "**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
 
 2. Consistency training
 * From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
