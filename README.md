@@ -4,7 +4,7 @@
 * Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
 ## Overview
-We propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
+We propose a self-supervised driven consistency training paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
 
 1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
@@ -46,11 +46,11 @@ pip install -r requirements.txt
 ## Datasets
 * BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
 * Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
-* Colorectal cancer tissue classification: to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
+* Colorectal cancer tissue classification [(Kather et al. 2019)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Training 
 The model training happens at three stages:
-1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
+1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)` task) 
 2. Task-specific supervised fine-tuning (`SSL`)
 3. Task-specific teacher-student consistency training (`SSL_CR`)
 
@@ -67,30 +67,34 @@ python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 * We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
 
 ### 2. Task specific supervised fine-tuning on downstream task
-From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
+From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1); There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1). There are other arguments that can be set in the corresponding files. 
 
 ```python
 python eval_BreastPathQ_SSL.py  // Supervised fine-tuning on BreastPathQ   
 python eval_Camelyon_SSL.py    // Supervised fine-tuning on Camelyon16
+python eval_Kather_SSL.py    // Supervised fine-tuning on Kather dataset (Colorectal)
 ```
+Note: we didn't perform self-supervised pretraining on the Kather dataset (colorectal) due to the unavailability of WSI's. Instead, we performed domain adaptation by pretraining on Camelyon16 and fine-tuning on the Kather dataset. Refer to, paper for more details.
+
 
 ### 3. Task specific teacher-student consistency training on downstream task
-From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py"**, you can fine-tune the student network by keeping the teacher network frozen via task-specific consistency training on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
+From the file **"eval_BreastPathQ_SSL_CR.py / eval_Camelyon_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can fine-tune the student network by keeping the teacher network frozen via task-specific consistency training on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model, which is the fine-tuned model from Step 2) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path_finetune** - path to load SSL fine-tuned model (i.e., self-supervised pretraining followed by supervised fine-tuned model from Step 2) to intialize "Teacher and student network" for consistency training; There are other arguments that can be set in the corresponding files. 
 
 ```python
-python eval_BreastPathQ_SSL_CR.py  // Supervised fine-tuning on BreastPathQ   
-python eval_Camelyon_SSL_CR.py    // Supervised fine-tuning on Camelyon16
+python eval_BreastPathQ_SSL_CR.py  // Consistency training on BreastPathQ   
+python eval_Camelyon_SSL_CR.py    // Consistency training on Camelyon16
+python eval_Kather_SSL_CR.py    // Consistency training on Kather dataset (Colorectal)
 ```
 
 ## Testing
 The test performance is validated at two stages:
 
 1. Self-Supervised pretraining followed by supervised fine-tuning
-* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
+* From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py "**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
 
 2. Consistency training
 * From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
@@ -106,9 +110,10 @@ If you use significant portions of our code or ideas from our paper in your rese
   year={2021}
 }
 ```
+### Acknowldegements
+We would like to acknowledge the use of Compute Canada Servers for our computing resources. This work was funded by Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
 
 ### Questions or Comments
-
 Please direct any questions or comments to me; I am happy to help in any way I can. You can email me directly at chetan.srinidhi@utoronto.ca.
 
 
