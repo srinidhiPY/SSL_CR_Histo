@@ -10,8 +10,7 @@ We propose a self-supervised driven consistency paradigm for histopathology imag
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), [tissue type classification(Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE), and [tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
- 
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), [tissue type classification(Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE), and [tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively. 
 
 ## 1. Self-Supervised pretext task
 <img src="Fig2_RSP.png" width="800px"/>
@@ -20,6 +19,23 @@ We carry out extensive validation experiments on three histopathology benchmark 
 <img src="Fig1_Main.png" width="800px"/>
 
 ## Results 
+
+#### Quantitative results using 10% labels
+
+|           |  BreastPathQ  | 
+| Methods   | (206 labels)  |      	   	     
+|           | ICC(A)| ICC(B)|
+|-----------|-------|-------|	      
+| Random    | 0.697 | 0.637 |   
+| VAE       | 0.733 | 0.693 |  	
+| MoCo      | 0.675 | 0.648 |   	
+| RSP       | 0.701 | 0.667 |   	
+| Random+CR | 0.658 | 0.630 |   	
+| VAE+CR    | 0.771 | 0.727 |   	
+| MoCo+CR   | 0.808 | 0.803 |   	
+| RSP+CR    | 0.876 | 0.846 |   
+
+#### Visual results using 10% labels
 
 * Predicted tumor cellularity (TC) scores on **BreastPathQ** test set for 10% labeled data
 <img src="BPQ.png" width="800px"/>
