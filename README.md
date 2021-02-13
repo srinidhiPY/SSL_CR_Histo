@@ -26,7 +26,6 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 * Predicted tumor probability on **Camelyon16** test set for 10% labeled data 
 <img src="Cam16.png" width="800px"/>
-<br/>
 
 ## Prerequisites
 Core implementation:
@@ -95,11 +94,6 @@ The test performance is validated at two stages:
 
 2. Consistency training
 * From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '--mode' to 'evaluation'.
-
-
-## Acknowledgements
-
-
 
 ### Citation
 
