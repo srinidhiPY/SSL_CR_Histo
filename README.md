@@ -4,7 +4,7 @@
 * Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
 ## Overview
-We propose a self-supervised driven consistency paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
+We propose a self-supervised driven consistency training paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
 
 1. A **self-supervised pretext task** that harnesses the underlying **multi-resolution contextual cues** in histology whole-slide images (WSIs) to learn a powerful supervisory signal for unsupervised representation learning.
 
@@ -46,11 +46,11 @@ pip install -r requirements.txt
 ## Datasets
 * BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
 * Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
-* Colorectal cancer tissue classification: to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
+* Colorectal cancer tissue classification [(Kather et al. 2019)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Training 
 The model training happens at three stages:
-1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)`) 
+1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)` task) 
 2. Task-specific supervised fine-tuning (`SSL`)
 3. Task-specific teacher-student consistency training (`SSL_CR`)
 
@@ -69,7 +69,7 @@ python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 ### 2. Task specific supervised fine-tuning on downstream task
 From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
 
-* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1); There are other arguments that can be set in the corresponding files. 
+* Arguments: **--model_path** - path to load self-supervised pretrained model (i.e., trained model from Step 1). There are other arguments that can be set in the corresponding files. 
 
 ```python
 python eval_BreastPathQ_SSL.py  // Supervised fine-tuning on BreastPathQ   
