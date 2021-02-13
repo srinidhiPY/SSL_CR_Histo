@@ -10,7 +10,7 @@ We propose a self-supervised driven consistency paradigm for histopathology imag
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), [tissue type classification](Colorectal)(https://zenodo.org/record/1214456#.YCbVXy3b1hE), and [tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), [tissue type classification(Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE), and [tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
  
 
 ## 1. Self-Supervised pretext task
