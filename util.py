@@ -117,74 +117,7 @@ def colour_augmentation(image, h_mean=0, h_std=random.uniform(-0.035, 0.035), d_
     image = zdh_8bit
     return image
 
-
-# def colour_augmentation(image, h_mean=0, h_std=random.uniform(-0.05, 0.05), d_mean=0, d_std=random.uniform(-0.05, 0.05), e_mean=0, e_std=random.uniform(-0.05, 0.05)):
-#
-#     '''
-#     Randomly augments staining of images by separating them in to h and e (and d)
-#     channels and modifying their values. Aims to produce plausible stain variation
-#     used in custom augmentation
-#
-#     PARAMETERS
-#     ##########
-#
-#     image - arbitary RGB image (3 channel array) expected to be 8-bit
-#
-#     aug_mean - average value added to each stain, default setting is 0
-#
-#     aug_std - standard deviation for random modifier, default value 0.035
-#
-#     threshold - summative pixel value which will determine if a pixel will be ignored
-#                 This is done to avoid excess color distortion in dark or unstained
-#                 region. threshold = 40
-#
-#     RETURNS
-#     #######
-#
-#     image - 8 bit RGB image with the same dimensions as the input image, with
-#             a modified stain
-#     ​
-#     '''
-#
-#     # creates a mask based on dark areas of the original image so they are not augmented
-#     mask = image[:, :, 0] + image[:, :, 1] + image[:, :, 2] < 40   # threshold
-#
-#     ihc_hed = rgb2hed(image)
-#     Im_size = image.shape[1]
-#
-#     h = ihc_hed[:, :, 0]
-#     d = ihc_hed[:, :, 1]
-#     e = ihc_hed[:, :, 2]
-#
-#     hFlat = np.ravel(h, order='A')
-#     dFlat = np.ravel(d, order='A')
-#     eFlat = np.ravel(e, order='A')
-#
-#     hmod = random.normalvariate(h_mean, h_std)
-#     dmod = random.normalvariate(d_mean, d_std)
-#     emod = random.normalvariate(e_mean, e_std)
-#
-#     maskFlat = np.ravel(mask, order='A')
-#
-#     for x in range(len(h.ravel())):
-#
-#         if not maskFlat[x]:
-#             hFlat[x] = hFlat[x] + hmod
-#             dFlat[x] = dFlat[x] + dmod
-#             eFlat[x] = eFlat[x] + emod
-#
-#     h = hFlat.reshape(Im_size, Im_size)
-#     d = dFlat.reshape(Im_size, Im_size)
-#     e = eFlat.reshape(Im_size, Im_size)
-#
-#     zdh = np.stack((h, d, e), 2)
-#     zdh = hed2rgb(zdh)
-#     zdh_8bit = (zdh * 255).astype('uint8')
-#     image = zdh_8bit
-#
-#     return image
-
-
+##########
 def plot_confusion_matrix(y_true, y_pred, classes, normalize=False, title=None, cmap=plt.cm.Blues):
 
     """
@@ -412,3 +345,5 @@ class Formatter(object):
 
         with open(outjson, 'w') as f:
             json.dump(json_dict, f, indent=1)
+
+###################################

@@ -938,63 +938,6 @@ class DatasetCamelyon16_eval(Dataset):
 
         return img, label
 
-################
-
-class DatasetCamelyon16_test(Dataset):                           # Final Predictions #
-
-    def __init__(self, data_path, mask_path, image_size):
-
-            """
-            Camelyon16 dataset class wrapper
-                    data_path: string, path to pre-sampled images
-                    json_path: string, path to the annotations in json format
-            """
-
-            self.data_path = data_path
-            self.mask_path = mask_path
-            self.image_size = image_size
-            self.preprocess()
-
-    def preprocess(self):
-
-        self.mask = np.load(self.mask_path)
-        self.slide = openslide.OpenSlide(self.data_path)
-
-        X_slide, Y_slide = self.slide.level_dimensions[0]
-        X_mask, Y_mask = self.mask.shape
-
-        if round(X_slide / X_mask) != round(Y_slide / Y_mask):
-            raise Exception('Slide/Mask dimension does not match ,'
-                            ' X_slide / X_mask : {} / {},'
-                            ' Y_slide / Y_mask : {} / {}'
-                            .format(X_slide, X_mask, Y_slide, Y_mask))
-
-        self.resolution = round(X_slide * 1.0 / X_mask)
-        if not np.log2(self.resolution).is_integer():
-            raise Exception('Resolution (X_slide / X_mask) is not power of 2 :'
-                            ' {}'.format(self.resolution))
-
-        # all the indices for tissue region from the tissue mask
-        self.X_idcs, self.Y_idcs = np.where(self.mask)
-
-    def __len__(self):
-        return len(self.X_idcs)
-
-    def __getitem__(self, idx):
-
-        x_mask, y_mask = self.X_idcs[idx], self.Y_idcs[idx]
-
-        x_center = int((x_mask + 0.5) * self.resolution)
-        y_center = int((y_mask + 0.5) * self.resolution)
-
-        x = int(x_center - self.image_size / 2)
-        y = int(y_center - self.image_size / 2)
-
-        img = self.slide.read_region((x, y), 0, (self.image_size, self.image_size)).convert('RGB')
-        img = np.array(img, dtype=np.float32).transpose((2, 0, 1))
-
-        return img, x_mask, y_mask
-
 ##########################################################################
 
 ###### Kather dataloaders #############
@@ -1004,7 +947,7 @@ class DatasetKather_eval:
     def __init__(self, dataset_path, image_size):
 
         """
-        Kather dataset class wrapper (test)
+        Kather dataset class wrapper (test/val)
         """
 
         self.image_size = image_size
@@ -1053,25 +996,22 @@ class DatasetKather_eval:
 
         # Convert PIL image to numpy array
         img = np.array(img)
-        # img = Image.fromarray(img)
-        # img.show()
-        # img = np.array(img)
 
-        img1 = self.transform1(image=img)
+        img = self.transform1(image=img)
 
         # Convert numpy array to PIL Image
-        img1 = Image.fromarray(img1['image'])
-        # img1.show()
-        img1 = np.array(img1)
-        img1 = torch.from_numpy(img1)
+        img = Image.fromarray(img['image'])
+
+        img = np.array(img)
+        img = torch.from_numpy(img)
 
         label = np.array(label)
         label = torch.from_numpy(label)
 
         # Change Tensor Dimension to N x C x H x W
-        img1 = img1.permute(2, 0, 1)
+        img = img.permute(2, 0, 1)
 
-        return img1, label
+        return img, label
 
 #############
 
@@ -1080,7 +1020,7 @@ class DatasetKather_Supervised_train:
     def __init__(self, dataset_path, image_size):
 
         """
-        Kather dataset class wrapper (train with augmentation)
+        Kather dataset: supervised fine-tuning on downstream task
         """
 
         self.image_size = image_size
@@ -1158,23 +1098,23 @@ class DatasetKather_Supervised_train:
         Aug2_img1 = np.array(Aug2_img1)
 
         # Stack along specified dimension
-        img1 = np.stack((img1, Aug1_img1, Aug2_img1), axis=0)
+        img = np.stack((img1, Aug1_img1, Aug2_img1), axis=0)
 
         # Numpy to torch
-        img1 = torch.from_numpy(img1)
+        img = torch.from_numpy(img)
 
         # Randomize the augmentations
-        shuffle_idx = torch.randperm(len(img1))
-        img1 = img1[shuffle_idx, :, :, :]
+        shuffle_idx = torch.randperm(len(img))
+        img = img[shuffle_idx, :, :, :]
 
         label = np.array(label)
         label = torch.from_numpy(label)
         label = label.repeat(img1.shape[0])
 
         # Change Tensor Dimension to N x C x H x W
-        img1 = img1.permute(0, 3, 1, 2)
+        img = img.permute(0, 3, 1, 2)
 
-        return img1, label
+        return img, label
 
 #############
 
@@ -1183,7 +1123,7 @@ class DatasetKather_SSLtrain:
     def __init__(self, dataset_path, image_size, transform=None):
 
         """
-        Kather dataset class wrapper (train with augmentation)
+        Kather dataset: consistency training on downstream task
         """
 
         self.image_size = image_size
