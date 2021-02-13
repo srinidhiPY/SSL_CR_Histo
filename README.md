@@ -21,14 +21,14 @@ We carry out extensive validation experiments on three histopathology benchmark 
 ## Results 
 
 * Predicted tumor cellularity (TC) scores on **BreastPathQ** test set for 10% labeled data
-<br/><br/>
+<br/>
 <img src="BPQ.png" width="800px"/>
-<br/><br/><br/>
+<br/>
 
 * Predicted tumor probability on **Camelyon16** test set for 10% labeled data 
-<br/><br/>
+<br/>
 <img src="Cam16.png" width="800px"/>
-<br/><br/>
+<br/>
 
 ## Prerequisites
 Core implementation:
