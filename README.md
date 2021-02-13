@@ -10,7 +10,8 @@ We propose a self-supervised driven consistency paradigm for histopathology imag
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colorectal), and tumor cellularity quantification (Breast)*.  
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *tumor metastasis detection (Breast), tissue type classification (Colorectal), and tumor cellularity quantification (Breast)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
+ 
 
 ## 1. Self-Supervised pretext task
 <img src="Fig2_RSP.png" width="800px"/>
