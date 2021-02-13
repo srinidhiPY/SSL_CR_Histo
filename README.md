@@ -111,7 +111,7 @@ If you use significant portions of our code or ideas from our paper in your rese
 }
 ```
 ### Acknowldegements
-We would like to acknowledge the use of Compute Canada Servers for our computing resources. This work was funded by Canadian Cancer Society (grant number 705772); National Cancer Institute of the National Institutes of Health [grant number U24CA199374-01]; Canadian Institutes of Health Research.
+We would like to acknowledge the use of Compute Canada Servers for our computing resources. This work was funded by Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
 
 ### Questions or Comments
 Please direct any questions or comments to me; I am happy to help in any way I can. You can email me directly at chetan.srinidhi@utoronto.ca.
