@@ -20,13 +20,13 @@ We carry out extensive validation experiments on three histopathology benchmark 
 
 ## Results 
 
-* Tumor cellularity (TC) scores produced on WSIs of the BreastPathQ test set for 10% labeled data
+* Predicted tumor cellularity (TC) scores on BreastPathQ test set for 10% labeled data
 
-<img src="BPQ.png" width="900px"/>
+<img src="BPQ.png" width="800px"/>
 
-* Tumor probability heat-maps overlaid on original WSIs from Camelyon16 test set predicted from 10% labeled data
+* Predicted tumor probability on Camelyon16 test set for 10% labeled data
 
-<img src="Cam16.png" width="900px"/>
+<img src="Cam16.png" width="800px"/>
 
 ## Prerequisites
 Core implementation:
