@@ -23,7 +23,8 @@ We carry out extensive validation experiments on three histopathology benchmark 
 #### Quantitative results using 10% labels
 
 | Methods   |  BreastPathQ  | 
-|           | (206 labels)  |      	   	     
+|           | (206 labels)  |  
+|-----------|---------------|
 |           | ICC(A)| ICC(B)|
 |-----------|-------|-------|	      
 | Random    | 0.697 | 0.637 |   
