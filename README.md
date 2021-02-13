@@ -18,6 +18,16 @@ We carry out extensive validation experiments on three histopathology benchmark 
 ## 2. Consistency training
 <img src="Fig1_Main.png" width="800px"/>
 
+## Results 
+
+* Tumor cellularity (TC) scores produced on WSIs of the BreastPathQ test set for 10% labeled data
+
+<img src="BPQ.png" width="900px"/>
+
+* Tumor probability heat-maps overlaid on original WSIs from Camelyon16 test set predicted from 10% labeled data
+
+<img src="Cam16.png" width="900px"/>
+
 ## Prerequisites
 Core implementation:
 * Python 3.7+
