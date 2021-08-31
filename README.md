@@ -103,7 +103,7 @@ The prediction on Camelyon16 test set can be performed using "**test_Camelyon16.
 
 ### Citation
 
-If you use significant portions of our code or ideas from our paper in your research, please cite our work:
+If you find our work useful in your research or if you use parts of this code please consider citing our paper:
 ```
 @article{srinidhi2021self,
   title={Self-supervised driven consistency training for annotation efficient histopathology image analysis},
