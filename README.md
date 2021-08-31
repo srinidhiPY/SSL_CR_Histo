@@ -113,7 +113,7 @@ If you use significant portions of our code or ideas from our paper in your rese
 }
 ```
 ### Acknowledgements 
-We would like to acknowledge the use of Compute Canada facilities for our computing resources. This work was funded by the Canadian Cancer Society (grant number #705772); National Cancer Institute of the National Institutes of Health [grant number #U24CA199374-01]; Canadian Institutes of Health Research.
+This work was funded by Canadian Cancer Society and Canadian Institutes of Health Research (CIHR). It was also enabled in part by support provided by Compute Canada (www.computecanada.ca).
 
 ### Questions or Comments
 Please direct any questions or comments to me; I am happy to help in any way I can. You can email me directly at chetan.srinidhi@utoronto.ca.
