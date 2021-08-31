@@ -984,8 +984,8 @@ class DatasetCamelyon16_test(Dataset):                           # Final Predict
 
         x_mask, y_mask = self.X_idcs[idx], self.Y_idcs[idx]
 
-        x_center = int((x_mask + 0.5) * self.resolution)
-        y_center = int((y_mask + 0.5) * self.resolution)
+        x_center = int((x_mask) * self.resolution)
+        y_center = int((y_mask) * self.resolution)
 
         x = int(x_center - self.image_size / 2)
         y = int(y_center - self.image_size / 2)
