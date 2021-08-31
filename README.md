@@ -27,7 +27,7 @@ We carry out extensive validation experiments on three histopathology benchmark 
 * Predicted tumor probability on **Camelyon16** test set for 10% labeled data 
 <img src="Cam16.png" width="800px"/>
 
-## Prerequisites
+## Pre-requisites
 Core implementation:
 * Python 3.7+
 * Pytorch 1.7+
