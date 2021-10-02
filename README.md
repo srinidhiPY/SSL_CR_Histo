@@ -3,7 +3,7 @@
 
 * Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
-* (https://img.shields.io/badge/NEW-MODEL-<GREEN>.svg)](https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models)
+* (https://img.shields.io/badge/NEW-MODEL-<GREEN>.svg)(https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models)
 
 ## Overview
 We propose a self-supervised driven consistency training paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
