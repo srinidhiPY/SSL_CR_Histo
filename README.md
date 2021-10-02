@@ -5,8 +5,7 @@
 
 * (https://img.shields.io/badge/NEW-MODEL-<GREEN>.svg)(https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models)
   
-  <a href="https://lgtm.com/projects/g/badges/shields/alerts/">
-        <img src="https://img.shields.io/badge/NEW-MODEL-<GREEN>.svg"/></a>
+  <a href="https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models"><img src="https://img.shields.io/badge/PRETRAINED-MODEL-<GREEN>.svg"/></a>
 
 ## Overview
 We propose a self-supervised driven consistency training paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
