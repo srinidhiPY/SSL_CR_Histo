@@ -53,7 +53,7 @@ pip install -r requirements.txt
 ## Datasets
 * **BreastPathQ**: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
 * **Camelyon16**: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
-* Colorectal cancer tissue classification [(**Kather et al. 2019**)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
+* **Colorectal** cancer tissue classification [(Kather et al. 2019)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Training
 The model training consists of three stages:
