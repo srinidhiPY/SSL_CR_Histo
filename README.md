@@ -12,7 +12,7 @@ We propose a self-supervised driven consistency training paradigm for histopatho
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based tasks: 
+We carry out extensive validation experiments on **three** histopathology benchmark datasets across **two classification** and **one regression-based** tasks: 
 - [Tumor Metastasis Detection (Breast)](https://camelyon16.grand-challenge.org)
 - [Tissue-Type Classification (Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE)
 - [Tumor Cellularity Quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/) 
