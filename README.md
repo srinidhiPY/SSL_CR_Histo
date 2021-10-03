@@ -45,10 +45,7 @@ Core implementation:
 * Matplotlib 3.2+
 * Scipy, Numpy (any version)
 
-Additional packages can be installed via:
-```
-pip install -r requirements.txt
-```
+Additional packages can be installed via: See [`requirements.txt`](https://github.com/srinidhiPY/SSL_CR_Histo/blob/histo/requirements.txt)
 
 ## Datasets
 * **BreastPathQ**: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
@@ -57,9 +54,9 @@ pip install -r requirements.txt
 
 ## Training
 The model training consists of **three** stages:
-1. ***Task-agnostic self-supervised pretext task** (i.e., the proposed `***Resolution sequence prediction (RSP)***` task)
-2. Task-specific supervised fine-tuning (`SSL`)
-3. Task-specific teacher-student consistency training (`SSL_CR`)
+1. ***Task-agnostic self-supervised pretext task*** (i.e., the proposed ***`Resolution sequence prediction (RSP)`*** task)
+2. ***Task-specific supervised fine-tuning*** (`SSL`)
+3. ***Task-specific teacher-student consistency training*** (`SSL_CR`)
 
 ### 1. Self-supervised pretext task: Resolution sequence prediction (RSP) in WSIs
 From the file **"pretrain_BreastPathQ.py / pretrain_Camelyon16.py"**, you can pretrain the network (ResNet18) for predicting the resolution sequence ordering in WSIs on BreastPathQ & Camelyon16 dataset, respectively. This can be easily adapted to any other dataset of choice.
