@@ -95,12 +95,12 @@ python eval_Kather_SSL_CR.py    // Consistency training on Kather dataset (Color
 ```
 
 ## Testing
-The test performance is validated at two stages:
+The test performance is validated at **two** stages:
 
-1. Self-Supervised pretraining followed by supervised fine-tuning
+1. **Self-Supervised pretraining followed by supervised fine-tuning**
 * From the file **"eval_BreastPathQ_SSL.py / eval_Kather_SSL.py "**, you can test the model by changing the flag in argument: '**--mode**' to '**evaluation**'.
 
-2. Consistency training
+2. **Consistency training**
 * From the file **"eval_BreastPathQ_SSL_CR.py / eval_Kather_SSL_CR.py"**, you can test the model by changing the flag in argument: '**--mode**' to '**evaluation**'.
 
 The prediction on Camelyon16 test set can be performed using "**test_Camelyon16.py**" file.
@@ -120,6 +120,11 @@ If you find our work useful in your research or if you use parts of this code pl
   year={2021}
 }
 ```
+
+### Extended work:
+- We also improved our self-supervised pretrained representations on Out-of-Distrbiution data via hardness-aware dynamic curriculum learning (HaDCL) approach.: "**ICCV, CDpath Workshop, 2021**" (https://arxiv.org/abs/2108.07183)
+
+
 ### Acknowledgements
 This work was funded by Canadian Cancer Society and Canadian Institutes of Health Research (CIHR). It was also enabled in part by support provided by Compute Canada (www.computecanada.ca).
 
