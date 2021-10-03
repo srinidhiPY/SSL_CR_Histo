@@ -45,7 +45,7 @@ Core implementation:
 * Matplotlib 3.2+
 * Scipy, Numpy (any version)
 
-Additional packages can be installed via: See [`requirements.txt`](https://github.com/srinidhiPY/SSL_CR_Histo/blob/histo/requirements.txt)
+Additional packages can be installed via: [`requirements.txt`](https://github.com/srinidhiPY/SSL_CR_Histo/blob/histo/requirements.txt)
 
 ## Datasets
 * **BreastPathQ**: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
