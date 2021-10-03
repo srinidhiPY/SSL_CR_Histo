@@ -56,8 +56,8 @@ pip install -r requirements.txt
 * **Colorectal** cancer tissue classification [(Kather et al. 2019)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Training
-The model training consists of three stages:
-1. Task-agnostic self-supervised pretext task (i.e., the proposed `Resolution sequence prediction (RSP)` task)
+The model training consists of **three** stages:
+1. ***Task-agnostic self-supervised pretext task** (i.e., the proposed `***Resolution sequence prediction (RSP)***` task)
 2. Task-specific supervised fine-tuning (`SSL`)
 3. Task-specific teacher-student consistency training (`SSL_CR`)
 
