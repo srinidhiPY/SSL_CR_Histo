@@ -14,7 +14,7 @@ We propose a self-supervised driven consistency training paradigm for histopatho
 
 We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based tasks: 
 - [Tumor Metastasis Detection (Breast)](https://camelyon16.grand-challenge.org)
-- [Tissue Type Classification (Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE)
+- [Tissue-Type Classification (Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE)
 - [Tumor Cellularity Quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/) 
 
 We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
@@ -27,11 +27,11 @@ We compare against the state-of-the-art self-supervised pretraining methods base
 
 ## Results
 
-* Predicted tumor cellularity (TC) scores on **BreastPathQ** test set for 10% labeled data
+* Predicted tumor cellularity (TC) scores on **BreastPathQ** test set for **10%** labeled data
 <img src="BPQ.png" width="800px"/>
 <br/>
 
-* Predicted tumor probability on **Camelyon16** test set for 10% labeled data
+* Predicted tumor probability on **Camelyon16** test set for **10%** labeled data
 <img src="Cam16.png" width="800px"/>
 
 ## Pre-requisites
@@ -51,9 +51,9 @@ pip install -r requirements.txt
 ```
 
 ## Datasets
-* BreastPathQ: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
-* Camelyon16: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
-* Colorectal cancer tissue classification [(Kather et al. 2019)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
+* **BreastPathQ**: to download the dataset, check this link :<br/>https://breastpathq.grand-challenge.org/Overview/
+* **Camelyon16**: to download the dataset, check this link :<br/>https://camelyon16.grand-challenge.org
+* Colorectal cancer tissue classification [(**Kather et al. 2019**)](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002730): to download the dataset, check this link :<br/>https://zenodo.org/record/1214456#.YCbVXy3b1hE
 
 ## Training
 The model training consists of three stages:
