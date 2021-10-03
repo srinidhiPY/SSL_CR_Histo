@@ -107,7 +107,7 @@ The prediction on Camelyon16 test set can be performed using "**test_Camelyon16.
 
 ## License
 
-Our code is released under the [MIT license](LICENSE).
+Our code is released under [MIT license](LICENSE).
 
 ### Citation
 
