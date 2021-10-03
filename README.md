@@ -20,10 +20,10 @@ We carry out extensive validation experiments on **three** histopathology benchm
 We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
 
 ## 1. Self-Supervised pretext task
-<img src="Fig2_RSP.png" width="800px"/>
+<img src="Fig2_RSP.png" width="600px"/>
 
 ## 2. Consistency training
-<img src="Fig1_Main.png" width="800px"/>
+<img src="Fig1_Main.png" width="600px"/>
 
 ## Results
 
