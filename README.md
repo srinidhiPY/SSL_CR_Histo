@@ -1,7 +1,7 @@
 #  Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis
 #### by [Chetan L. Srinidhi](https://srinidhipy.github.io), [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Fu-Der Chen](https://www.photon.utoronto.ca/people) and [Anne L. Martel](https://medbio.utoronto.ca/faculty/martel)
 
-* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). Accepted in **Medical Image Analysis (MedIA)**, October, 2021. [[Journal Link, Coming soon]]() [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
+* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://arxiv.org/pdf/2102.03897.pdf). Accepted in **Medical Image Analysis (MedIA)**, October, 2021. [[Journal Link]]() [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
 * <a href="https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models"><img src="https://img.shields.io/badge/PRETRAINED-MODELS-<GREEN>.svg"/></a>
 
@@ -12,7 +12,13 @@ We propose a self-supervised driven consistency training paradigm for histopatho
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., *[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), [tissue type classification(Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE), and [tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
+We carry out extensive validation experiments on three histopathology benchmark datasets across two classification and one regression-based task, i.e., 
+*[tumor metastasis detection (Breast)](https://camelyon16.grand-challenge.org), 
+-- [tissue type classification(Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE), and 
+[tumor cellularity quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)*. 
+
+
+We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
 
 ## 1. Self-Supervised pretext task
 <img src="Fig2_RSP.png" width="800px"/>
