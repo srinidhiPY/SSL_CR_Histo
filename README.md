@@ -1,7 +1,7 @@
 #  Self-Supervised Driven Consistency Training for Annotation Efficient Histopathology Image Analysis
 #### by [Chetan L. Srinidhi](https://srinidhipy.github.io), [Seung Wook Kim](https://seung-kim.github.io/seungkim/), [Fu-Der Chen](https://www.photon.utoronto.ca/people) and [Anne L. Martel](https://medbio.utoronto.ca/faculty/martel)
 
-* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://doi.org/10.1016/j.media.2021.102256). **Medical Image Analysis (MedIA)**, October, 2021. [[Journal Link]](https://doi.org/10.1016/j.media.2021.102256) [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
+* Official repository for [Self-Supervised driven Consistency Training for Annotation Efficient Histopathology Image Analysis](https://doi.org/10.1016/j.media.2021.102256). Published in **Medical Image Analysis (MedIA)**, October, 2021. [[Journal Link]](https://doi.org/10.1016/j.media.2021.102256) [[arXiv preprint]](https://arxiv.org/pdf/2102.03897.pdf)
 
 * <a href="https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models"><img src="https://img.shields.io/badge/PRETRAINED-MODELS-<GREEN>.svg"/></a>
 
