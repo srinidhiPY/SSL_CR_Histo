@@ -121,7 +121,7 @@ If you find our work useful in your research or if you use parts of this code pl
 }
 ```
 ### Extended work
-- We also improved our self-supervised pretrained representations to Out-of-Distrbiution data via **hardness-aware dynamic curriculum learning (HaDCL) approach**, accepted in **ICCV 2021, CDpath Workshop (Oral).** [[Conference proceedings]](https://openaccess.thecvf.com/content/ICCV2021W/CDPath/html/Srinidhi_Improving_Self-Supervised_Learning_With_Hardness-Aware_Dynamic_Curriculum_Learning_An_Application_ICCVW_2021_paper.html) [[arXiv preprint]](https://arxiv.org/abs/2108.07183) [[Code]](https://github.com/srinidhiPY/ICCV-CDPATH2021-ID-8)
+- We also improved our self-supervised pretrained representations to Out-of-Distrbiution data via **hardness-aware dynamic curriculum learning (HaDCL) approach**, **ICCV 2021, CDpath Workshop (Oral).** [[Conference proceedings]](https://openaccess.thecvf.com/content/ICCV2021W/CDPath/html/Srinidhi_Improving_Self-Supervised_Learning_With_Hardness-Aware_Dynamic_Curriculum_Learning_An_Application_ICCVW_2021_paper.html) [[arXiv preprint]](https://arxiv.org/abs/2108.07183) [[Code]](https://github.com/srinidhiPY/ICCV-CDPATH2021-ID-8)
 
 
 ### Acknowledgements
