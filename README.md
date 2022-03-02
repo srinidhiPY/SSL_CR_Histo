@@ -5,6 +5,8 @@
 
 * <a href="https://github.com/srinidhiPY/SSL_CR_Histo/tree/histo/Pretrained_models"><img src="https://img.shields.io/badge/PRETRAINED-MODELS-<GREEN>.svg"/></a>
 
+* A new version of our RSP based SSL pretraining [Pretraining_v2](Pretraining_v2) has been released with Randaugment technique on TIGER Challenge dataset (https://tiger.grand-challenge.org)
+
 ## Overview
 We propose a self-supervised driven consistency training paradigm for histopathology image analysis that learns to leverage both **task-agnostic** and **task-specific** unlabeled data based on two strategies:
 
@@ -70,7 +72,7 @@ python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 ```
 * We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
 
-**A new version of RSP (version-2) pretraining has been implemented with Randaugment technique [/Pretraining_v2] on TIGER Challenge dataset (https://tiger.grand-challenge.org)
+* A new version of RSP (version-2) pretraining has been implemented with Randaugment technique [./Pretraining_v2] on TIGER Challenge dataset (https://tiger.grand-challenge.org)
 
 ### 2. Task specific supervised fine-tuning on downstream task
 From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
@@ -115,11 +117,14 @@ Our code is released under [MIT license](LICENSE).
 
 If you find our work useful in your research or if you use parts of this code please consider citing our paper:
 ```
-@article{srinidhi2021self,
+@article{srinidhi2022self,
   title={Self-supervised driven consistency training for annotation efficient histopathology image analysis},
   author={Srinidhi, Chetan L and Kim, Seung Wook and Chen, Fu-Der and Martel, Anne L},
-  journal={arXiv preprint arXiv:2102.03897},
-  year={2021}
+  journal={Medical Image Analysis},
+  volume={75},
+  pages={102256},
+  year={2022},
+  publisher={Elsevier}
 }
 ```
 ### Extended work
