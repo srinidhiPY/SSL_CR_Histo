@@ -12,10 +12,10 @@ We propose a self-supervised driven consistency training paradigm for histopatho
 
 2. A new **teacher-student** semi-supervised **consistency paradigm** that learns to effectively transfer the pretrained representations to downstream tasks based on prediction consistency with the task-specific unlabeled data.
 
-We carry out extensive validation experiments on **three** histopathology benchmark datasets across **two classification** and **one regression-based** tasks: 
+We carry out extensive validation experiments on **three** histopathology benchmark datasets across **two classification** and **one regression-based** tasks:
 - [Tumor Metastasis Detection (Breast)](https://camelyon16.grand-challenge.org)
 - [Tissue-Type Classification (Colorectal)](https://zenodo.org/record/1214456#.YCbVXy3b1hE)
-- [Tumor Cellularity Quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/) 
+- [Tumor Cellularity Quantification (Breast)](https://breastpathq.grand-challenge.org/Overview/)
 
 We compare against the state-of-the-art self-supervised pretraining methods based on generative and contrastive learning techniques: [Variational Autoencoder (VAE)](https://arxiv.org/abs/1312.6114) and [Momentum Contrast (MoCo)](https://arxiv.org/abs/1911.05722), respectively.
 
@@ -69,6 +69,8 @@ python pretrain_BreastPathQ.py    // Pretraining on BreastPathQ
 python pretrain_Camelyon16.py    // Pretraining on Camelyon16
 ```
 * We also provided the pretrained models for BreastPathQ and Camelyon16, found in the "Pretrained_models" folder. These models can also be used for feature transferability (domain adaptation) between datasets with different tissue types/organs.   
+
+**A new version of RSP (version-2) pretraining has been implemented with Randaugment technique [/Pretraining_v2] on TIGER Challenge dataset (https://tiger.grand-challenge.org)
 
 ### 2. Task specific supervised fine-tuning on downstream task
 From the file **"eval_BreastPathQ_SSL.py / eval_Camelyon_SSL.py / eval_Kather_SSL.py"**, you can fine-tune the network (i.e., task-specific supervised fine-tuning) on the downstream task with limited label data (10%, 25%, 50%). Refer to, paper for more details.
