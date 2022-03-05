@@ -228,6 +228,8 @@ class Vectorize_WSIs:
         os.makedirs('{}/lr1/'.format(savepth), exist_ok=True)
         os.makedirs('{}/lr2/'.format(savepth), exist_ok=True)
 
+        'Extract multi-resolution concentric patches'
+
         'lr patch_2'
         image_tile_lr2 = scan.read_region((int(m * x), int(m * y)), self.lr_level_2, (self.tile_w, self.tile_h)).convert('RGB')
         image_tile_lr2 = np.array(image_tile_lr2).astype('uint8')
@@ -237,7 +239,7 @@ class Vectorize_WSIs:
 
         'lr patch_1'
         mlr = scan.level_downsamples[self.lr_level_1]
-        left, up = int(int(int(m * (x + (self.tile_w / 2))) / mlr) * mlr), int(int(int(m * (y + (self.tile_h / 2))) / mlr) * mlr)
+        left, up = int(int(int(int(m * (x + (self.tile_w / 2))) / mlr) - int(self.tile_w / 2)) * mlr), int(int(int(int(m * (y + (self.tile_h / 2))) / mlr) - int(self.tile_h / 2)) * mlr)
 
         image_tile_lr1 = scan.read_region((left, up), self.lr_level_1, (self.tile_w, self.tile_h)).convert('RGB')
         image_tile_lr1 = np.array(image_tile_lr1).astype('uint8')
@@ -250,7 +252,7 @@ class Vectorize_WSIs:
 
         'hr patch'
         mhr = scan.level_downsamples[self.hr_level]
-        left_hr, up_hr = int(int(int(m * (x + (self.tile_w / 2))) / mhr) * mhr), int(int(int(m * (y + (self.tile_h / 2))) / mhr) * mhr)
+        left_hr, up_hr = int(int(int(int(m * (x + (self.tile_w / 2))) / mhr) - int(self.tile_w / 2)) * mhr), int(int(int(int(m * (y + (self.tile_h / 2))) / mhr) - int(self.tile_h / 2)) * mhr)
 
         image_tile_hr = scan.read_region((left_hr, up_hr), self.hr_level, (self.tile_w, self.tile_h)).convert('RGB')
         image_tile_hr = np.array(image_tile_hr).astype('uint8')
